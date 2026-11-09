@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\ShopOwnerController;
+use App\Http\Controllers\Owner\CatalogController;
 use App\Http\Controllers\Owner\OwnerDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 // Shop Owner Routes
 Route::middleware(['auth', 'shop_owner'])->prefix('owner')->name('owner.')->group(function () {
     Route::get('/dashboard', [OwnerDashboardController::class, 'index'])->name('dashboard');
+
+    // Shared Catalog
+    Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
+    Route::post('/catalog/{product}/add', [CatalogController::class, 'add'])->name('catalog.add');
 });
 
 require __DIR__.'/settings.php';
