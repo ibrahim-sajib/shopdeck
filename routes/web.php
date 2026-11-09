@@ -7,9 +7,13 @@ use App\Http\Controllers\Admin\ShopOwnerController;
 use App\Http\Controllers\Owner\CatalogController;
 use App\Http\Controllers\Owner\OwnerDashboardController;
 use App\Http\Controllers\Owner\OwnerProductController;
+use App\Http\Controllers\Public\PublicShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
+
+// Public Storefront Routes
+Route::get('/shops/{slug}', [PublicShopController::class, 'show'])->name('public.shops.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
