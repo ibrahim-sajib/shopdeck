@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\ShopOwnerController;
 use App\Http\Controllers\Owner\OwnerDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/shops/{shop}', [ShopController::class, 'update'])->name('shops.update');
     Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shops.destroy');
     Route::post('/shops/{shop}/toggle-status', [ShopController::class, 'toggleStatus'])->name('shops.toggle-status');
+
+    // Shop Owner Management
+    Route::get('/shop-owners', [ShopOwnerController::class, 'index'])->name('shop-owners.index');
+    Route::get('/shop-owners/create', [ShopOwnerController::class, 'create'])->name('shop-owners.create');
+    Route::post('/shop-owners', [ShopOwnerController::class, 'store'])->name('shop-owners.store');
+    Route::get('/shop-owners/{user}/edit', [ShopOwnerController::class, 'edit'])->name('shop-owners.edit');
+    Route::put('/shop-owners/{user}', [ShopOwnerController::class, 'update'])->name('shop-owners.update');
+    Route::delete('/shop-owners/{user}', [ShopOwnerController::class, 'destroy'])->name('shop-owners.destroy');
+    Route::post('/shop-owners/{user}/toggle-status', [ShopOwnerController::class, 'toggleStatus'])->name('shop-owners.toggle-status');
 });
 
 // Shop Owner Routes
