@@ -21,10 +21,10 @@ ShopDeck allows administrators to maintain a centralized product catalog and man
    composer install
    npm install
    ```
-3. Generate app key and run migrations:
+3. Generate app key and run migrations and seed demo user:
    ```bash
    php artisan key:generate
-   php artisan migrate
+   php artisan migrate:fresh --seed 
    php artisan storage:link
    ```
 4. Build assets:
