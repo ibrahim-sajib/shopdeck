@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\ShopOwnerController;
 use App\Http\Controllers\Owner\CatalogController;
 use App\Http\Controllers\Owner\OwnerDashboardController;
+use App\Http\Controllers\Owner\OwnerProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -58,6 +59,15 @@ Route::middleware(['auth', 'shop_owner'])->prefix('owner')->name('owner.')->grou
     // Shared Catalog
     Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
     Route::post('/catalog/{product}/add', [CatalogController::class, 'add'])->name('catalog.add');
+
+    // Shop Listings & Own Product Creation
+    Route::get('/products', [OwnerProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [OwnerProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [OwnerProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{shopProduct}/edit', [OwnerProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{shopProduct}', [OwnerProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/{shopProduct}', [OwnerProductController::class, 'destroy'])->name('products.destroy');
+    Route::post('/products/{shopProduct}/toggle-status', [OwnerProductController::class, 'toggleStatus'])->name('products.toggle-status');
 });
 
 require __DIR__.'/settings.php';
