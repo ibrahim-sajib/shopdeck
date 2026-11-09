@@ -2,6 +2,8 @@ export type User = {
     id: number;
     name: string;
     email: string;
+    role?: 'admin' | 'shop_owner' | string;
+    is_active?: boolean;
     avatar?: string;
     email_verified_at: string | null;
     /* @chisel-2fa */
