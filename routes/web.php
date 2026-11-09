@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\ShopOwnerController;
 use App\Http\Controllers\Owner\OwnerDashboardController;
@@ -38,6 +39,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/shop-owners/{user}', [ShopOwnerController::class, 'update'])->name('shop-owners.update');
     Route::delete('/shop-owners/{user}', [ShopOwnerController::class, 'destroy'])->name('shop-owners.destroy');
     Route::post('/shop-owners/{user}/toggle-status', [ShopOwnerController::class, 'toggleStatus'])->name('shop-owners.toggle-status');
+
+    // Global Product Management
+    Route::get('/products', [AdminProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [AdminProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
+    Route::post('/products/{product}/toggle-status', [AdminProductController::class, 'toggleStatus'])->name('products.toggle-status');
 });
 
 // Shop Owner Routes
