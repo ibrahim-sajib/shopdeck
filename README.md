@@ -27,7 +27,8 @@ ShopDeck allows administrators to maintain a centralized product catalog and man
    php artisan migrate:fresh --seed 
    php artisan storage:link
    ```
-4. Build assets:
+4. Run shopdeck:
    ```bash
-   npm run build
+   php artisan serve
+   npm run run dev
    ```
