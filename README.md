@@ -32,3 +32,16 @@ ShopDeck allows administrators to maintain a centralized product catalog and man
    php artisan serve
    npm run run dev
    ```
+
+
+5. Seeded user:
+   ```bash
+   'name' => 'Test User',
+   'email' => 'test@example.com',
+   'email' => 'password',
+
+
+   'name' => 'ShopDeck Admin',
+   'email' => 'admin@example.com',
+   'email' => 'password',
+   ```
